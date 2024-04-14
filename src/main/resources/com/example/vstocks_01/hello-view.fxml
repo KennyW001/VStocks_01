@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorInput?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vstocks_01.HelloController">
+   <children>
+      <AnchorPane fx:id="fp_uppermainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" StackPane.alignment="TOP_LEFT">
+         <effect>
+            <ColorInput height="200.0" width="600.0">
+               <paint>
+                  <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.41287877342917706">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.3288888931274414" green="0.5879999995231628" blue="0.800000011920929" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006729475100942127">
+                           <color>
+                              <Color red="0.3294117748737335" green="0.5882353186607361" blue="0.800000011920929" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </paint>
+            </ColorInput>
+         </effect></AnchorPane>
+      <AnchorPane fx:id="fp_lowermainpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" StackPane.alignment="BOTTOM_LEFT">
+         <effect>
+            <ColorInput height="600.0" width="600.0">
+               <paint>
+                  <LinearGradient endX="1.0" endY="0.780303036624735" startX="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="0.006729475100942127">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.062745101749897" green="0.3686274588108063" blue="0.6000000238418579" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </paint>
+            </ColorInput>
+         </effect>
+      </AnchorPane>
+      <AnchorPane fx:id="fp_leftpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_LEFT">
+         <children>
+            <ComboBox fx:id="fp_homebtn" layoutX="25.0" layoutY="34.0" prefWidth="150.0" promptText="Home" style="-fx-background-color: WHITE; -fx-border-color: WHITE;">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow />
+               </effect></ComboBox>
+         </children></AnchorPane>
+      <AnchorPane fx:id="fp_middlepane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_CENTER">
+         <children>
+            <AnchorPane fx:id="fp_middletoppane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="fp_title" layoutX="16.0" layoutY="25.0" text="VStocks">
+                     <font>
+                        <Font name="Droid Sans Mono" size="40.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="fp_middlebottompane" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="fp_trending" layoutX="40.0" layoutY="34.0" text="Trending">
+                     <font>
+                        <Font name="Droid Sans Mono" size="25.0" />
+                     </font>
+                  </Label>
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="fp_rightpane" layoutX="210.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_RIGHT">
+         <children>
+            <ComboBox fx:id="fp_login" layoutX="25.0" layoutY="33.0" prefWidth="150.0" promptText="Log in" style="-fx-background-color: WHITE; -fx-border-color: WHITE;">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ComboBox>
+         </children></AnchorPane>
+      <AnchorPane fx:id="fp_lowermainpane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" StackPane.alignment="BOTTOM_CENTER">
+         <children>
+            <Label fx:id="fp_stockname1" layoutX="75.0" layoutY="55.0" prefHeight="35.0" prefWidth="70.0" text="Stock 1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="fp_buybtn1" layoutX="455.0" layoutY="55.0" prefHeight="35.0" prefWidth="70.0" promptText="Buy" style="-fx-background-color: WHITE;">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ComboBox>
+            <Label fx:id="fp_stocktime1" layoutX="353.0" layoutY="55.0" prefHeight="35.0" prefWidth="91.0" text="From past ____">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <LineChart fx:id="fp_stockchart1" layoutX="145.0" layoutY="33.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="200.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <Label fx:id="fp_stockname2" layoutX="75.0" layoutY="135.0" prefHeight="35.0" prefWidth="70.0" text="Stock 2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="fp_buybtn2" layoutX="455.0" layoutY="135.0" prefHeight="35.0" prefWidth="70.0" promptText="Buy" style="-fx-background-color: WHITE;">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ComboBox>
+            <Label fx:id="fp_stocktime2" layoutX="353.0" layoutY="135.0" prefHeight="35.0" prefWidth="91.0" text="From past ____">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <LineChart fx:id="fp_stockchart2" layoutX="145.0" layoutY="113.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="200.0">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" />
+               </yAxis>
+            </LineChart>
+            <Label fx:id="fp_stockname3" layoutX="75.0" layoutY="215.0" prefHeight="35.0" prefWidth="70.0" text="Stock 3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="fp_buybtn3" layoutX="455.0" layoutY="215.0" prefHeight="35.0" prefWidth="70.0" promptText="Buy" style="-fx-background-color: WHITE;">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ComboBox>
+            <Label fx:id="fp_stocktime3" layoutX="353.0" layoutY="215.0" prefHeight="35.0" prefWidth="91.0" text="From past ____">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <LineChart fx:id="fp_stockchart3" layoutX="145.0" layoutY="193.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="200.0">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" />
+               </yAxis>
+            </LineChart>
+            <Label fx:id="fp_stockname4" layoutX="75.0" layoutY="295.0" prefHeight="35.0" prefWidth="70.0" text="Stock 4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="fp_buybtn4" layoutX="455.0" layoutY="295.0" prefHeight="35.0" prefWidth="70.0" promptText="Buy" style="-fx-background-color: WHITE;">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ComboBox>
+            <Label fx:id="fp_stocktime4" layoutX="353.0" layoutY="295.0" prefHeight="35.0" prefWidth="91.0" text="From past ____">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <LineChart fx:id="fp_stockchart4" layoutX="145.0" layoutY="273.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="200.0">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" />
+               </yAxis>
+            </LineChart>
+            <Label fx:id="fp_stockname5" layoutX="75.0" layoutY="375.0" prefHeight="35.0" prefWidth="70.0" text="Stock 5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="fp_buybtn5" layoutX="455.0" layoutY="375.0" prefHeight="35.0" prefWidth="70.0" promptText="Buy" style="-fx-background-color: WHITE;">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ComboBox>
+            <Label fx:id="fp_stocktime5" layoutX="353.0" layoutY="375.0" prefHeight="35.0" prefWidth="91.0" text="From past ____">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <LineChart fx:id="fp_stockchart5" layoutX="145.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="200.0">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" />
+               </yAxis>
+            </LineChart>
+            <Label fx:id="fp_stockname6" layoutX="75.0" layoutY="455.0" prefHeight="35.0" prefWidth="70.0" text="Stock 6">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="fp_buybtn6" layoutX="455.0" layoutY="455.0" prefHeight="35.0" prefWidth="70.0" promptText="Buy" style="-fx-background-color: WHITE;">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ComboBox>
+            <Label fx:id="fp_stocktime6" layoutX="353.0" layoutY="455.0" prefHeight="35.0" prefWidth="91.0" text="From past ____">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <LineChart fx:id="fp_stockchart6" layoutX="145.0" layoutY="433.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="200.0">
+               <xAxis>
+                  <CategoryAxis side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" />
+               </yAxis>
+            </LineChart>
+            <ComboBox fx:id="fp_buybtn11" layoutX="344.0" prefHeight="35.0" prefWidth="110.0" promptText="Time Scaling" style="-fx-background-color: WHITE;">
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ComboBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="fp_lowermainpane2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="600.0" StackPane.alignment="BOTTOM_CENTER" />
+   </children>
+</StackPane>
