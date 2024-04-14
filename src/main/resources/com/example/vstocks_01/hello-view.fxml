@@ -270,7 +270,7 @@
                   <NumberAxis side="LEFT" />
                </yAxis>
             </LineChart>
-            <ComboBox fx:id="fp_buybtn11" layoutX="344.0" prefHeight="35.0" prefWidth="110.0" promptText="Time Scaling" style="-fx-background-color: WHITE;">
+            <ComboBox fx:id="fp_timebtn" layoutX="344.0" prefHeight="35.0" prefWidth="110.0" promptText="Time Scaling" style="-fx-background-color: WHITE;">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
