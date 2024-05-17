@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorInput?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vstocks_01.Stockspage">
+   <children>
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0">
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" StackPane.alignment="TOP_LEFT">
+               <effect>
+                  <ColorInput height="200.0" width="600.0">
+                     <paint>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.41287877342917706">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.3288888931274414" green="0.5879999995231628" blue="0.800000011920929" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.006729475100942127">
+                                 <color>
+                                    <Color red="0.3294117748737335" green="0.5882353186607361" blue="0.800000011920929" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </paint>
+                  </ColorInput>
+               </effect>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" StackPane.alignment="BOTTOM_LEFT">
+               <effect>
+                  <ColorInput height="600.0" width="600.0">
+                     <paint>
+                        <LinearGradient endX="1.0" endY="0.780303036624735" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.006729475100942127">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.062745101749897" green="0.3686274588108063" blue="0.6000000238418579" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </paint>
+                  </ColorInput>
+               </effect>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_LEFT">
+               <children>
+                  <ComboBox fx:id="st_homebtn" layoutX="25.0" layoutY="34.0" onAction="#stHomeBtn" prefWidth="150.0" promptText="More Stocks" style="-fx-background-color: WHITE; -fx-border-color: WHITE;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ComboBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_CENTER">
+               <children>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="pf_title" layoutX="16.0" layoutY="25.0" text="VStocks">
+                           <font>
+                              <Font name="Droid Sans Mono" size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="8.0" layoutY="32.0" text="Top 20 Stocks">
+                           <font>
+                              <Font name="Droid Sans Mono" size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="210.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_RIGHT" />
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" StackPane.alignment="BOTTOM_CENTER">
+               <children>
+                  <AnchorPane fx:id="buysellbtnspg" layoutX="32.0" layoutY="431.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="536.0">
+                     <children>
+                        <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="120.0" prefWidth="255.0">
+                           <effect>
+                              <ColorInput height="120.0" paint="WHITE" width="255.0" />
+                           </effect>
+                        </AnchorPane>
+                        <AnchorPane layoutX="269.0" layoutY="17.0" prefHeight="120.0" prefWidth="255.0">
+                           <effect>
+                              <ColorInput height="120.0" paint="WHITE" width="255.0" />
+                           </effect>
+                        </AnchorPane>
+                        <Button fx:id="fpbuybtn" contentDisplay="TOP" layoutX="37.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchBuyBtn" prefHeight="109.0" prefWidth="200.0" text="Buy" />
+                        <Button fx:id="fpsellbtn" contentDisplay="TOP" layoutX="300.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchSellBtn" prefHeight="109.0" prefWidth="200.0" text="Sell" />
+                     </children>
+                     <effect>
+                        <DropShadow blurType="TWO_PASS_BOX" height="32.7" radius="14.68" spread="0.14" width="28.02" />
+                     </effect>
+                  </AnchorPane>
+                  <TableView fx:id="st_table" layoutX="42.0" layoutY="14.0" prefHeight="409.0" prefWidth="516.0">
+                     <columns>
+                        <TableColumn editable="false" prefWidth="237.60001754760742" text="Name" />
+                        <TableColumn editable="false" minWidth="0.0" prefWidth="140.79998779296875" text="Value" />
+                        <TableColumn editable="false" minWidth="0.0" prefWidth="137.5999755859375" text="Gain(Return)" />
+                     </columns>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </TableView>
+                  <AnchorPane fx:id="buybtnpg" layoutX="32.0" layoutY="431.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="536.0" visible="false">
+                     <children>
+                        <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="120.0" prefWidth="255.0">
+                           <effect>
+                              <ColorInput height="120.0" paint="WHITE" width="255.0" />
+                           </effect>
+                        </AnchorPane>
+                        <AnchorPane layoutX="269.0" layoutY="17.0" prefHeight="120.0" prefWidth="255.0">
+                           <effect>
+                              <ColorInput height="120.0" paint="WHITE" width="255.0" />
+                           </effect>
+                        </AnchorPane>
+                        <Button fx:id="buybtnmain" layoutX="465.0" layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="51.0" text="Buy" />
+                        <Button fx:id="buybackbtn" contentDisplay="TOP" layoutX="37.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchBackBtn" prefHeight="109.0" prefWidth="200.0" text="Back" />
+                        <Text layoutX="280.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shares Amount:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="280.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="buyshareamt" layoutX="390.0" layoutY="23.0" prefHeight="26.0" prefWidth="125.0" promptText="Shares Amount" />
+                        <TextField fx:id="buytotalprice" editable="false" layoutX="390.0" layoutY="63.0" prefHeight="26.0" prefWidth="125.0" promptText="Total Price" />
+                     </children>
+                     <effect>
+                        <DropShadow blurType="TWO_PASS_BOX" height="32.7" radius="14.68" spread="0.14" width="28.02" />
+                     </effect>
+                  </AnchorPane>
+                  <AnchorPane fx:id="sellbtnpg" layoutX="32.0" layoutY="431.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="536.0" visible="false">
+                     <children>
+                        <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="120.0" prefWidth="255.0">
+                           <effect>
+                              <ColorInput height="120.0" paint="WHITE" width="255.0" />
+                           </effect>
+                        </AnchorPane>
+                        <AnchorPane layoutX="269.0" layoutY="17.0" prefHeight="120.0" prefWidth="255.0">
+                           <effect>
+                              <ColorInput height="120.0" paint="WHITE" width="255.0" />
+                           </effect>
+                        </AnchorPane>
+                        <Button fx:id="sellbtnmain" layoutX="465.0" layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="51.0" text="Sell" />
+                        <Button fx:id="sellbackbtn" contentDisplay="TOP" layoutX="37.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchBackBtn" prefHeight="109.0" prefWidth="200.0" text="Back" />
+                        <Text layoutX="280.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shares Owned:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="240.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="sharesowned" editable="false" layoutX="390.0" layoutY="23.0" prefHeight="26.0" prefWidth="125.0" promptText="Shares Owned" />
+                        <TextField fx:id="selltotalprice" editable="false" layoutX="320.0" layoutY="103.0" prefHeight="26.0" prefWidth="125.0" promptText="Total Price" />
+                        <Text layoutX="240.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sell Amount (Shares):">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="sharesellamt" layoutX="390.0" layoutY="63.0" prefHeight="26.0" prefWidth="125.0" promptText="Sell Amount" />
+                     </children>
+                     <effect>
+                        <DropShadow blurType="TWO_PASS_BOX" height="32.7" radius="14.68" spread="0.14" width="28.02" />
+                     </effect>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</StackPane>

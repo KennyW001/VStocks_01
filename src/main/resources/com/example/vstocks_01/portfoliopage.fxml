@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.ColorInput?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="pfpage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.vstocks_01.Portfoliopage">
+   <children>
+      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0">
+         <children>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="600.0" StackPane.alignment="TOP_LEFT">
+               <effect>
+                  <ColorInput height="200.0" width="600.0">
+                     <paint>
+                        <LinearGradient endX="1.0" endY="1.0" startX="1.0" startY="0.41287877342917706">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.3288888931274414" green="0.5879999995231628" blue="0.800000011920929" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.006729475100942127">
+                                 <color>
+                                    <Color red="0.3294117748737335" green="0.5882353186607361" blue="0.800000011920929" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </paint>
+                  </ColorInput>
+               </effect>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" StackPane.alignment="BOTTOM_LEFT">
+               <effect>
+                  <ColorInput height="600.0" width="600.0">
+                     <paint>
+                        <LinearGradient endX="1.0" endY="0.780303036624735" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.006729475100942127">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.062745101749897" green="0.3686274588108063" blue="0.6000000238418579" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </paint>
+                  </ColorInput>
+               </effect>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_LEFT">
+               <children>
+                  <ComboBox fx:id="pf_homebtn" layoutX="25.0" layoutY="34.0" onAction="#pfHomeBtn" prefWidth="150.0" promptText="Portfolio" style="-fx-background-color: WHITE; -fx-border-color: WHITE;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ComboBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_CENTER">
+               <children>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="pf_title" layoutX="16.0" layoutY="25.0" text="VStocks">
+                           <font>
+                              <Font name="Droid Sans Mono" size="40.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="28.0" layoutY="32.0" text="Evaluation">
+                           <font>
+                              <Font name="Droid Sans Mono" size="25.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="210.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_RIGHT" />
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" StackPane.alignment="BOTTOM_CENTER">
+               <children>
+                  <LineChart fx:id="pf_graph" layoutX="50.0" layoutY="82.0" prefHeight="233.0" prefWidth="500.0">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis minorTickVisible="false" prefHeight="193.0" prefWidth="37.0" side="LEFT">
+                           <effect>
+                              <Blend mode="SOFT_LIGHT" />
+                           </effect>
+                        </NumberAxis>
+                    </yAxis>
+                     <effect>
+                        <DropShadow height="15.0" radius="7.0" width="15.0" />
+                     </effect>
+                  </LineChart>
+                  <Text layoutX="91.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Value" />
+                  <Text fx:id="pf_value" layoutX="91.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$5000.00">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="269.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gain" />
+                  <Text fx:id="pf_gain" layoutX="240.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+$354.00">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="427.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Return" />
+                  <Text fx:id="pf_return" layoutX="418.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8.02%">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Label layoutX="89.0" layoutY="300.0" text="Slices">
+                     <font>
+                        <Font name="Droid Sans Mono" size="25.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutX="91.0" layoutY="337.0" prefHeight="222.0" prefWidth="450.0">
+                     <children>
+                        <TableView fx:id="pf_table" prefHeight="222.0" prefWidth="450.0">
+                          <columns>
+                            <TableColumn prefWidth="226.40000915527344" text="Name" />
+                            <TableColumn minWidth="0.0" prefWidth="129.5999755859375" text="Value" />
+                              <TableColumn minWidth="0.0" prefWidth="94.39996337890625" text="Gain(Return)" />
+                          </columns>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</StackPane>

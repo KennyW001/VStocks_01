@@ -1,0 +1,32 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="VulnerableLibrariesLocal" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="isIgnoringEnabled" value="true" />
+      <option name="ignoredModules">
+        <list>
+          <option value="VStocks_01" />
+          <option value="VStocks_01" />
+          <option value="VStocks_01" />
+          <option value="VStocks_01" />
+        </list>
+      </option>
+      <option name="ignoredPackages">
+        <list>
+          <option value="org.webjars.npm:request:2.88.2" />
+          <option value="org.webjars.npm:string:3.3.3" />
+          <option value="org.webjars.npm:tough-cookie:2.5.0" />
+          <option value="com.fasterxml.jackson.core:jackson-databind:2.9.8" />
+        </list>
+      </option>
+      <option name="ignoredReasons">
+        <list>
+          <option value="Not exploitable" />
+          <option value="Not exploitable" />
+          <option value="Fixed in branch" />
+          <option value="Other" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

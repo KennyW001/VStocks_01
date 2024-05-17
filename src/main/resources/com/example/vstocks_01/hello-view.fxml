@@ -72,7 +72,7 @@
       </AnchorPane>
       <AnchorPane fx:id="fp_leftpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_LEFT">
          <children>
-            <ComboBox fx:id="fp_homebtn" layoutX="25.0" layoutY="34.0" prefWidth="150.0" promptText="Home" style="-fx-background-color: WHITE; -fx-border-color: WHITE;">
+            <ComboBox fx:id="fp_homebtn" layoutX="25.0" layoutY="34.0" onAction="#fpHomeBtn" prefWidth="150.0" promptText="Home" style="-fx-background-color: WHITE; -fx-border-color: WHITE;">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
@@ -101,17 +101,7 @@
                </children></AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="fp_rightpane" layoutX="210.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_RIGHT">
-         <children>
-            <ComboBox fx:id="fp_login" layoutX="25.0" layoutY="33.0" prefWidth="150.0" promptText="Log in" style="-fx-background-color: WHITE; -fx-border-color: WHITE;">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </ComboBox>
-         </children></AnchorPane>
+      <AnchorPane fx:id="fp_rightpane" layoutX="210.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" StackPane.alignment="TOP_RIGHT" />
       <AnchorPane fx:id="fp_lowermainpane1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" StackPane.alignment="BOTTOM_CENTER">
          <children>
             <Label fx:id="fp_stockname1" layoutX="75.0" layoutY="55.0" prefHeight="35.0" prefWidth="70.0" text="Stock 1">
