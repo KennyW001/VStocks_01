@@ -30,17 +30,10 @@
       <version>8.0.32</version>
     </dependency>
     <dependency>
-      <groupId>org.webjars.npm</groupId>
-      <artifactId>yahoo-finance</artifactId>
-      <version>0.3.6</version>
-    </dependency>
-    <dependency>
       <groupId>com.yahoofinance-api</groupId>
       <artifactId>YahooFinanceAPI</artifactId>
       <version>3.15.0</version>
     </dependency>
-
-
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -71,7 +64,6 @@
         <version>0.0.8</version>
         <executions>
           <execution>
-            <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
               <mainClass>com.example.vstocks_01/com.example.vstocks_01.VStocks_01</mainClass>

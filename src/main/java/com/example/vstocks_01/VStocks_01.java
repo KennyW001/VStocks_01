@@ -24,7 +24,6 @@ public class VStocks_01 extends Application {
     }
 
     public static void main(String[] args) {
-
         launch();
     }
 }
