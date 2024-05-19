@@ -9,11 +9,14 @@ import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import yahoofinance.Stock;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,6 +46,10 @@ public class Portfoliopage implements Initializable {
 
     @FXML
     private StackPane pfpage;
+
+//    public void setValueSign() {
+//        pf_value.setText(databasebalance);
+//    }
 
     public void pfHomeBtn() {
         try {
@@ -86,6 +93,6 @@ public class Portfoliopage implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         pf_homebtn.setItems(FXCollections.observableArrayList("Home" , "More Stocks", "Log out"));
-
+        //setValueSign();
     }
 }

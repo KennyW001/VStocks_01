@@ -19,6 +19,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class Loginpage implements Initializable {
@@ -96,8 +97,8 @@ public class Loginpage implements Initializable {
 
                 result = prepare.executeQuery();
 
-                //Going to Portfolio form
                 if(result.next()) {
+                    Session.getInstance().setUsername(si_username.getText());
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
@@ -172,12 +173,36 @@ public class Loginpage implements Initializable {
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
                     alert.setContentText("Successfully registered Account!");
+                    initializeUserShares(su_username.getText());
                     alert.showAndWait();
 
                     su_username.setText("");
                     su_password.setText("");
                 }
             } catch(Exception e) {e.printStackTrace();}
+        }
+    }
+
+    private void initializeUserShares(String username) {
+        String insertData = "INSERT INTO login_schema.user_shares (user_id, symbol, quantity, balance) VALUES (?, ?, ?, ?)";
+        try {
+            String getUserIdQuery = "SELECT id FROM login_schema.users WHERE username = ?";
+            prepare = connect.prepareStatement(getUserIdQuery);
+            prepare.setString(1, username);
+            result = prepare.executeQuery();
+            int userId = 0;
+            if (result.next()) {
+                userId = result.getInt("id");
+            }
+
+            prepare = connect.prepareStatement(insertData);
+            prepare.setInt(1, userId);
+            prepare.setString(2, "NULL");
+            prepare.setInt(3, 0);
+            prepare.setDouble(4, 10000.00);
+            prepare.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

@@ -2,6 +2,7 @@ package com.example.vstocks_01;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class database {
@@ -22,5 +23,19 @@ public class database {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void insertStockData(Connection connection, String symbol, double price) {
+        String sql = "INSERT INTO login_schema.stock_data (symbol, price) VALUES (?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, symbol);
+            statement.setDouble(2, price);
+            statement.executeUpdate();
+            System.out.println("Stock data inserted successfully.");
+        } catch (SQLException e) {
+            System.err.println("Failed to insert stock data.");
+            e.printStackTrace();
+        }
     }
 }

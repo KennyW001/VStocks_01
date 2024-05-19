@@ -133,9 +133,9 @@
                   </AnchorPane>
                   <TableView fx:id="st_table" layoutX="42.0" layoutY="14.0" prefHeight="409.0" prefWidth="516.0">
                      <columns>
-                        <TableColumn editable="false" prefWidth="237.60001754760742" text="Name" />
-                        <TableColumn editable="false" minWidth="0.0" prefWidth="140.79998779296875" text="Value" />
-                        <TableColumn editable="false" minWidth="0.0" prefWidth="137.5999755859375" text="Gain(Return)" />
+                        <TableColumn fx:id="stock_col_symbol" editable="false" prefWidth="237.60001754760742" text="Name" />
+                        <TableColumn fx:id="stock_col_price" editable="false" minWidth="0.0" prefWidth="140.79998779296875" text="Value" />
+                        <TableColumn fx:id="stock_col_return" editable="false" minWidth="0.0" prefWidth="137.5999755859375" text="Gain(Return)" />
                      </columns>
                      <effect>
                         <DropShadow />
@@ -153,7 +153,7 @@
                               <ColorInput height="120.0" paint="WHITE" width="255.0" />
                            </effect>
                         </AnchorPane>
-                        <Button fx:id="buybtnmain" layoutX="465.0" layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="51.0" text="Buy" />
+                        <Button fx:id="buybtnmain" layoutX="465.0" layoutY="100.0" mnemonicParsing="false" onAction="#buyBtnAction" prefHeight="30.0" prefWidth="51.0" text="Buy" />
                         <Button fx:id="buybackbtn" contentDisplay="TOP" layoutX="37.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchBackBtn" prefHeight="109.0" prefWidth="200.0" text="Back" />
                         <Text layoutX="280.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shares Amount:">
                            <font>
@@ -165,7 +165,7 @@
                               <Font size="15.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="buyshareamt" layoutX="390.0" layoutY="23.0" prefHeight="26.0" prefWidth="125.0" promptText="Shares Amount" />
+                        <TextField fx:id="buyshareamt" layoutX="390.0" layoutY="23.0" onAction="#updateSelectData" prefHeight="26.0" prefWidth="125.0" promptText="Shares Amount" />
                         <TextField fx:id="buytotalprice" editable="false" layoutX="390.0" layoutY="63.0" prefHeight="26.0" prefWidth="125.0" promptText="Total Price" />
                      </children>
                      <effect>
@@ -184,7 +184,7 @@
                               <ColorInput height="120.0" paint="WHITE" width="255.0" />
                            </effect>
                         </AnchorPane>
-                        <Button fx:id="sellbtnmain" layoutX="465.0" layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="51.0" text="Sell" />
+                        <Button fx:id="sellbtnmain" layoutX="465.0" layoutY="100.0" mnemonicParsing="false" onAction="#sellBtnAction" prefHeight="30.0" prefWidth="51.0" text="Sell" />
                         <Button fx:id="sellbackbtn" contentDisplay="TOP" layoutX="37.0" layoutY="22.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchBackBtn" prefHeight="109.0" prefWidth="200.0" text="Back" />
                         <Text layoutX="280.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shares Owned:">
                            <font>
@@ -203,7 +203,7 @@
                               <Font size="15.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="sharesellamt" layoutX="390.0" layoutY="63.0" prefHeight="26.0" prefWidth="125.0" promptText="Sell Amount" />
+                        <TextField fx:id="sharesellamt" layoutX="390.0" layoutY="63.0" onAction="#updateSelectData" prefHeight="26.0" prefWidth="125.0" promptText="Sell Amount" />
                      </children>
                      <effect>
                         <DropShadow blurType="TWO_PASS_BOX" height="32.7" radius="14.68" spread="0.14" width="28.02" />

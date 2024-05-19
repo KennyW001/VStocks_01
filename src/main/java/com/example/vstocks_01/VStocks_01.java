@@ -16,6 +16,7 @@ public class VStocks_01 extends Application {
         //FXMLLoader fxmlLoader = new FXMLLoader(VStocks_01.class.getResource("hello-view.fxml"));
         FXMLLoader fxmlLoader = new FXMLLoader(VStocks_01.class.getResource("loginpage.fxml"));
         //FXMLLoader fxmlLoader = new FXMLLoader(VStocks_01.class.getResource("portfoliopage.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(VStocks_01.class.getResource("stockspage.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("");

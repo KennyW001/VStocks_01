@@ -5,6 +5,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.json.JSONObject;
 
 public class YahooAPI {
 
@@ -12,32 +18,78 @@ public class YahooAPI {
     private static final String API_HOST = "yahoo-finance127.p.rapidapi.com";
 
     public static void main(String[] args) {
+        YahooAPI api = new YahooAPI();
+        List<String> symbols = List.of("AA", "AAPL", "AAL", "AAOI", "AAP", "AAON", "AABB",
+                "MSFT", "GOOGL", "AMZN", "FB", "TSLA", "NFLX", "NVDA",
+                "BABA", "JPM", "JNJ", "V", "DIS", "MA");
+
+        String testSymbol = symbols.getFirst();
         try {
-            URL url = new URL("https://" + API_HOST + "/search/aa");
-
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            connection.setRequestMethod("GET");
-
-            connection.setRequestProperty("X-RapidAPI-Key", API_KEY);
-            connection.setRequestProperty("X-RapidAPI-Host", API_HOST);
-
-            int responseCode = connection.getResponseCode();
-            System.out.println("Response Code: " + responseCode);
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+            double price = api.getPriceForSymbol(testSymbol);
+            System.out.println("Symbol: " + testSymbol + " | Price: $" + price);
+            Connection connection = database.connectDB();
+            if (connection != null) {
+                database.insertStockData(connection, testSymbol, price);
+                try {
+                    connection.close();
+                    System.out.println("Database connection closed.");
+                } catch (SQLException e) {
+                    System.err.println("Failed to close database connection.");
+                    e.printStackTrace();
+                }
             }
-            in.close();
-
-            System.out.println(response);
-
-            connection.disconnect();
         } catch (IOException e) {
+            System.err.println("Error retrieving stock price for symbol: " + testSymbol);
             e.printStackTrace();
         }
+    }
+
+    public Map<String, Double> getStockPrices(List<String> symbols) throws IOException {
+        Map<String, Double> prices = new HashMap<>();
+        for (String symbol : symbols) {
+            double price = getPriceForSymbol(symbol);
+            prices.put(symbol, price);
+        }
+        return prices;
+    }
+
+    private double getPriceForSymbol(String symbol) throws IOException {
+        String urlString = "https://" + API_HOST + "/price/" + symbol;
+        URL url = new URL(urlString);
+
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("X-RapidAPI-Key", API_KEY);
+        connection.setRequestProperty("X-RapidAPI-Host", API_HOST);
+
+        int responseCode = connection.getResponseCode();
+        if (responseCode != 200) {
+            throw new IOException("HTTP error code: " + responseCode);
+        }
+
+        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        String inputLine;
+        StringBuilder response = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+        connection.disconnect();
+
+        String responseBody = response.toString();
+        System.out.println("Response for symbol " + symbol + ": " + responseBody);
+
+        JSONObject jsonResponse = new JSONObject(responseBody);
+
+        if (!jsonResponse.has("regularMarketPrice")) {
+            throw new IOException("regularMarketPrice not found in the response for symbol: " + symbol);
+        }
+
+        JSONObject regularMarketPrice = jsonResponse.getJSONObject("regularMarketPrice");
+        if (!regularMarketPrice.has("raw")) {
+            throw new IOException("regularMarketPrice.raw not found in the response for symbol: " + symbol);
+        }
+
+        return regularMarketPrice.getDouble("raw");
     }
 }
