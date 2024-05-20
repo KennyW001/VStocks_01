@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.ComboBox?>
@@ -115,16 +114,16 @@
             <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" StackPane.alignment="BOTTOM_CENTER">
                <children>
                   <LineChart fx:id="pf_graph" layoutX="50.0" layoutY="82.0" prefHeight="233.0" prefWidth="500.0">
-                    <xAxis>
-                      <CategoryAxis side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis minorTickVisible="false" prefHeight="193.0" prefWidth="37.0" side="LEFT">
+                     <xAxis>
+                        <NumberAxis fx:id="pf_graphtime" label="Time" side="BOTTOM" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis fx:id="pf_graphbalance" label="Balance" side="LEFT">
                            <effect>
                               <Blend mode="SOFT_LIGHT" />
                            </effect>
                         </NumberAxis>
-                    </yAxis>
+                     </yAxis>
                      <effect>
                         <DropShadow height="15.0" radius="7.0" width="15.0" />
                      </effect>
@@ -135,13 +134,13 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Text layoutX="269.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gain" />
-                  <Text fx:id="pf_gain" layoutX="240.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+$354.00">
+                  <Text layoutX="257.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Net Worth" />
+                  <Text fx:id="pf_gain" layoutX="252.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="+$354.00">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <Text layoutX="427.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Return" />
+                  <Text layoutX="419.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Return" />
                   <Text fx:id="pf_return" layoutX="418.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8.02%">
                      <font>
                         <Font size="20.0" />
@@ -156,8 +155,8 @@
                      <children>
                         <TableView fx:id="pf_table" prefHeight="222.0" prefWidth="450.0">
                           <columns>
-                            <TableColumn prefWidth="226.40000915527344" text="Name" />
-                            <TableColumn minWidth="0.0" prefWidth="129.5999755859375" text="Value" />
+                            <TableColumn fx:id="symbol_col" prefWidth="226.40000915527344" text="Name" />
+                            <TableColumn fx:id="value_col" minWidth="0.0" prefWidth="129.5999755859375" text="Value" />
                               <TableColumn minWidth="0.0" prefWidth="94.39996337890625" text="Gain(Return)" />
                           </columns>
                            <effect>

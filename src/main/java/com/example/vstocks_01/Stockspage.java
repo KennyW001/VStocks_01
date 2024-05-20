@@ -203,12 +203,26 @@ public class Stockspage implements Initializable {
             buyshareamt.setText("");
             selltotalprice.setText("");
             buytotalprice.setText("");
+            sharesowned.setText("");
             return;
         }
 
+        String username = Session.getInstance().getUsername();
+        if (username == null || username.isEmpty()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("User not logged in");
+            alert.showAndWait();
+            return;
+        }
+
+        User user = new User(username);
+        int stockQuantity = user.getStockQuantity(stockData.getSymbol());
+
         buyshareamt.setText("1");
         sharesellamt.setText("1");
-        sharesowned.setText("0");
+        sharesowned.setText(String.valueOf(stockQuantity));
 
         double sellTotalPrice = stockData.getPrice();
         double buyTotalPrice = stockData.getPrice();

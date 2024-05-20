@@ -20,16 +20,19 @@ public class YahooAPI {
     public static void main(String[] args) {
         YahooAPI api = new YahooAPI();
         List<String> symbols = List.of("AA", "AAPL", "AAL", "AAOI", "AAP", "AAON", "AABB",
-                "MSFT", "GOOGL", "AMZN", "FB", "TSLA", "NFLX", "NVDA",
-                "BABA", "JPM", "JNJ", "V", "DIS", "MA");
+                "MSFT", "GOOGL", "AMZN");
 
-        String testSymbol = symbols.getFirst();
+        //String testSymbol = symbols.getFirst();
         try {
-            double price = api.getPriceForSymbol(testSymbol);
-            System.out.println("Symbol: " + testSymbol + " | Price: $" + price);
+            Map<String, Double> symbolPrices = api.getStockPrices(symbols);
             Connection connection = database.connectDB();
             if (connection != null) {
-                database.insertStockData(connection, testSymbol, price);
+                for (Map.Entry<String, Double> entry : symbolPrices.entrySet()) {
+                    String symbol = entry.getKey();
+                    double price = entry.getValue();
+                    System.out.println("Symbol: " + symbol + " | Price: $" + price);
+                    database.insertStockData(connection, symbol, price);
+                }
                 try {
                     connection.close();
                     System.out.println("Database connection closed.");
@@ -39,9 +42,10 @@ public class YahooAPI {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error retrieving stock price for symbol: " + testSymbol);
+            System.err.println("Error retrieving stock prices.");
             e.printStackTrace();
         }
+
     }
 
     public Map<String, Double> getStockPrices(List<String> symbols) throws IOException {

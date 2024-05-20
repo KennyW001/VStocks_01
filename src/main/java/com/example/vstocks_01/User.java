@@ -12,7 +12,7 @@ public class User {
     private String username;
     private int userId;
     private double balance;
-    private Map<Stock, Integer> portfolio;
+    private Map<String, Integer> portfolio;
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
@@ -22,6 +22,7 @@ public class User {
         this.userId = getUserID(username);
         this.balance = getUserBalance();
         this.portfolio = new HashMap<>();
+        initializePortfolio();
     }
 
     public String getUsername() {
@@ -42,6 +43,26 @@ public class User {
 
     public int getUserId() {
         return userId;
+    }
+
+    private List<BalanceChangeListener> balanceChangeListeners = new ArrayList<>();
+
+    public interface BalanceChangeListener {
+        void onBalanceChanged();
+    }
+
+//    public void addBalanceChangeListener(BalanceChangeListener listener) {
+//        balanceChangeListeners.add(listener);
+//    }
+//
+//    public void removeBalanceChangeListener(BalanceChangeListener listener) {
+//        balanceChangeListeners.remove(listener);
+//    }
+
+    private void notifyBalanceChange() {
+        for (BalanceChangeListener listener : balanceChangeListeners) {
+            listener.onBalanceChanged();
+        }
     }
 
     public int getUserID(String username) {
@@ -112,6 +133,9 @@ public class User {
             prepare.setInt(2, userId);
             prepare.executeUpdate();
             connect.close();
+            this.balance = newBalance;
+            notifyBalanceChange();
+            recordBalanceChange(newBalance);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -133,6 +157,158 @@ public class User {
         }
     }
 
+    private double getCurrentStockPriceFromDB(String symbol) {
+        double currentPrice = 0.0;
+        Connection connect = database.connectDB();
+        String sql = "SELECT price FROM login_schema.stock_data WHERE symbol = ?";
+
+        try {
+            PreparedStatement prepare = connect.prepareStatement(sql);
+            prepare.setString(1, symbol);
+            ResultSet result = prepare.executeQuery();
+            if (result.next()) {
+                currentPrice = result.getDouble("price");
+            }
+            connect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return currentPrice;
+    }
+
+    public void recordBalanceChange(double balance) {
+        Connection connect = database.connectDB();
+        String sql = "INSERT INTO login_schema.balance_history (user_id, balance) VALUES (?, ?)";
+
+        try {
+            PreparedStatement prepare = connect.prepareStatement(sql);
+            prepare.setInt(1, userId);
+            prepare.setDouble(2, balance);
+            prepare.executeUpdate();
+            connect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<BalanceHistoryEntry> getBalanceHistory() {
+        List<BalanceHistoryEntry> balanceHistory = new ArrayList<>();
+        Connection connect = database.connectDB();
+        String sql = "SELECT balance, timestamp FROM login_schema.balance_history WHERE user_id = ? ORDER BY timestamp ASC";
+
+        try {
+            PreparedStatement prepare = connect.prepareStatement(sql);
+            prepare.setInt(1, userId);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                double balance = result.getDouble("balance");
+                Timestamp timestamp = result.getTimestamp("timestamp");
+                balanceHistory.add(new BalanceHistoryEntry(balance, timestamp.toLocalDateTime()));
+            }
+            connect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return balanceHistory;
+    }
+
+
+    public void initializePortfolio() {
+        Connection connect = database.connectDB();
+        String sql = "SELECT symbol, quantity FROM login_schema.user_shares WHERE user_id = ?";
+
+        try {
+            PreparedStatement prepare = connect.prepareStatement(sql);
+            prepare.setInt(1, userId);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                String symbol = result.getString("symbol");
+                int quantity = result.getInt("quantity");
+                portfolio.put(symbol, quantity);
+            }
+            connect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updatePortfolio(String symbol, int quantity) {
+        if (portfolio.containsKey(symbol)) {
+            int currentQuantity = portfolio.get(symbol);
+            if (currentQuantity + quantity <= 0) {
+                portfolio.remove(symbol);
+            } else {
+                portfolio.put(symbol, currentQuantity + quantity);
+            }
+        } else {
+            if (quantity > 0) {
+                portfolio.put(symbol, quantity);
+            }
+        }
+    }
+
+    public List<Stock> getStockPortfolio() {
+        List<Stock> stockPortfolio = new ArrayList<>();
+        Connection connect = database.connectDB();
+        String sql = "SELECT symbol, quantity FROM login_schema.user_shares WHERE user_id = ?";
+
+        try {
+            PreparedStatement prepare = connect.prepareStatement(sql);
+            prepare.setInt(1, userId);
+            ResultSet result = prepare.executeQuery();
+            while (result.next()) {
+                String symbol = result.getString("symbol");
+                int quantity = result.getInt("quantity");
+                double price = getCurrentStockPriceFromDB(symbol);
+                Stock stock = new Stock(symbol, price);
+                stockPortfolio.add(stock);
+            }
+            connect.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return stockPortfolio;
+    }
+
+    public double getNetWorth() {
+        double netWorth = balance;
+
+        for (Map.Entry<String, Integer> entry : portfolio.entrySet()) {
+            String stockSymbol = entry.getKey();
+            int quantity = entry.getValue();
+            double currentPrice = getCurrentStockPriceFromDB(stockSymbol);
+            netWorth += quantity * currentPrice;
+        }
+
+        return netWorth;
+    }
+
+    public double getReturnPercentage() {
+        double totalInvestment = 0.0;
+        double currentPortfolioValue = 0.0;
+
+        for (Map.Entry<String, Integer> entry : portfolio.entrySet()) {
+            String stockSymbol = entry.getKey();
+            int quantity = entry.getValue();
+            double purchasePrice = getCurrentStockPriceFromDB(stockSymbol);
+            totalInvestment += quantity * purchasePrice;
+        }
+
+        for (Map.Entry<String, Integer> entry : portfolio.entrySet()) {
+            String stockSymbol = entry.getKey();
+            int quantity = entry.getValue();
+            double currentPrice = getCurrentStockPriceFromDB(stockSymbol);
+            currentPortfolioValue += quantity * currentPrice;
+        }
+
+        if (totalInvestment > 0) {
+            return ((currentPortfolioValue - totalInvestment) / totalInvestment) * 100;
+        } else {
+            return 0.0;
+        }
+    }
+
+
     public void recordPurchase(String symbol, int quantity) {
         Connection connect = database.connectDB();
         String sql = "INSERT INTO login_schema.user_shares (user_id, symbol, quantity, balance, purchase_timestamp) VALUES (?, ?, ?, ?, ?)";
@@ -144,6 +320,7 @@ public class User {
             prepare.setInt(3, quantity);
             prepare.setDouble(4, balance);
             prepare.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now()));
+            updatePortfolio(symbol, quantity);
             prepare.executeUpdate();
             connect.close();
         } catch (Exception e) {
@@ -162,56 +339,46 @@ public class User {
             prepare.setString(3, stockSymbol);
             prepare.setInt(4, amount);
             prepare.setDouble(5, newBalance);
+            if (transactionType == TransactionType.BUY) {
+                updatePortfolio(stockSymbol, amount);
+            } else if (transactionType == TransactionType.SELL) {
+                updatePortfolio(stockSymbol, -amount);
+            }
             prepare.executeUpdate();
             connect.close();
+            updateBalance(newBalance);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public List<Transaction> getTransactionHistory() {
-        List<Transaction> transactions = new ArrayList<>();
-        Connection connect = database.connectDB();
-        String sql = "SELECT * FROM login_schema.transaction_history WHERE user_id = ?";
-
-        try {
-            PreparedStatement prepare = connect.prepareStatement(sql);
-            prepare.setInt(1, userId);
-            ResultSet resultSet = prepare.executeQuery();
-            while (resultSet.next()) {
-                int transactionId = resultSet.getInt("transaction_id");
-                String transactionTypeString = resultSet.getString("transaction_type");
-                TransactionType transactionType = TransactionType.valueOf(transactionTypeString);
-                String stockSymbol = resultSet.getString("stock_symbol");
-                int amount = resultSet.getInt("amount");
-                Timestamp timestamp = resultSet.getTimestamp("timestamp");
-                double newBalance = resultSet.getDouble("new_balance");
-
-                Transaction transaction = new Transaction(transactionId, transactionType, stockSymbol, amount, timestamp, newBalance);
-                transactions.add(transaction);
-            }
-            connect.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return transactions;
-    }
-
-    public void sellStock(String symbol, int sellShareAmount, double sellTotalPrice) {
-        double newBalance = getBalance() + sellTotalPrice;
-        updateBalance(newBalance);
-
-        int currentStockQuantity = getStockQuantity(symbol);
-        if (currentStockQuantity < sellShareAmount) {
-            throw new IllegalArgumentException("Not enough shares to sell");
-        }
-
-        int newStockQuantity = currentStockQuantity - sellShareAmount;
-        updateStockQuantity(symbol, newStockQuantity);
-
-        addTransaction(symbol, sellShareAmount, sellTotalPrice, TransactionType.SELL, newBalance);
-    }
-
+//    public List<Transaction> getTransactionHistory() {
+//        List<Transaction> transactions = new ArrayList<>();
+//        Connection connect = database.connectDB();
+//        String sql = "SELECT * FROM login_schema.transaction_history WHERE user_id = ?";
+//
+//        try {
+//            PreparedStatement prepare = connect.prepareStatement(sql);
+//            prepare.setInt(1, userId);
+//            ResultSet resultSet = prepare.executeQuery();
+//            while (resultSet.next()) {
+//                int transactionId = resultSet.getInt("transaction_id");
+//                String transactionTypeString = resultSet.getString("transaction_type");
+//                TransactionType transactionType = TransactionType.valueOf(transactionTypeString);
+//                String stockSymbol = resultSet.getString("stock_symbol");
+//                int amount = resultSet.getInt("amount");
+//                Timestamp timestamp = resultSet.getTimestamp("timestamp");
+//                double newBalance = resultSet.getDouble("new_balance");
+//
+//                Transaction transaction = new Transaction(transactionId, transactionType, stockSymbol, amount, timestamp, newBalance);
+//                transactions.add(transaction);
+//            }
+//            connect.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return transactions;
+//    }
 
 
 }

@@ -100,7 +100,7 @@
                   </AnchorPane>
                   <AnchorPane layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="8.0" layoutY="32.0" text="Top 20 Stocks">
+                        <Label layoutX="16.0" layoutY="32.0" text="More Stocks">
                            <font>
                               <Font name="Droid Sans Mono" size="25.0" />
                            </font>
