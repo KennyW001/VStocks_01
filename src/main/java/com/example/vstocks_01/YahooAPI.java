@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 public class YahooAPI {
 
-    private static final String API_KEY = "976f2b63a0msh65bbe5938c8e50ap117781jsnfc0a2b6254ad";
+    private static final String API_KEY;
     private static final String API_HOST = "yahoo-finance127.p.rapidapi.com";
 
     public static void main(String[] args) {
